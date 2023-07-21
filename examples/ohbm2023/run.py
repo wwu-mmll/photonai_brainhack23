@@ -1,5 +1,4 @@
 import pandas as pd
-
 from run_elements import *
 from config_selectors import *
 from collect_results import ResultCollector
@@ -8,22 +7,21 @@ import os
 
 
 list_of_config_selectors = {
-                            'best_std': BestStdConfigSelector,
+                            # 'best_std': BestStdConfigSelector,
+                            'percentile': PercentileConfigSelector,
                             # 'default': DefaultConfigSelector,
                             # 'random': RandomConfigSelector
                             }
 
-
-# config_selector_name = 'default'
 multiprocessing = True
 calculate = True
 
 
 list_of_dataset_runners = {
-                           # 'abalone': AbaloneRunner,
-                           # 'habermans_survival': HabermansSurvivalRunner,
-                           # 'autistic': AutisticRunner,
-                           # 'parkinson': ParkinsonsRunner,
+                           'abalone': AbaloneRunner,
+                           'habermans_survival': HabermansSurvivalRunner,
+                           'autistic': AutisticRunner,
+                           'parkinson': ParkinsonsRunner,
                            'breast_cancer': BreastCancerRunner,
                            'diabetes': DiabetesRunner,
 }
