@@ -9,7 +9,7 @@ import os
 
 list_of_config_selectors = {'default': DefaultConfigSelector,
                             'percentile': PercentileConfigSelector}
-                            #'random': RandomConfigSelector}
+                            'random': RandomConfigSelector}
 
 
 config_selector_name = 'default'
