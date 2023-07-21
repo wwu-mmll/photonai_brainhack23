@@ -1,4 +1,7 @@
 import numpy as np
+import pandas as pd
+
+from photonai.processing.metrics import Scorer
 
 
 class BaseConfigSelector:
@@ -47,3 +50,26 @@ class RandomConfigSelector:
 
         return best_config_outer_fold
 
+
+class BestStdConfigSelector:
+
+    def __call__(self, list_of_non_failed_configs, metric, fold_operation, maximize_metric):
+
+        Scorer.greater_is_better_distinction('variance_explained')
+        # all_metrics_mean, all_metrics_std = self.prepare_metrics(list_of_non_failed_configs, metric)
+        best_config_metric_values = [c.get_test_metric(metric, fold_operation) for c in list_of_non_failed_configs]
+        best_config_metric_std = [c.get_test_metric(metric, "std") for c in list_of_non_failed_configs]
+
+        best_config_metric_df = pd.DataFrame(data=[best_config_metric_values, best_config_metric_std], index=["values", "std"])
+        best_config_metric_df = pd.sort_values(['values', 'std'], ascending=[maximize_metric, True])
+
+        if maximize_metric:
+            # max metric
+            best_config_metric_nr = np.argmax(best_config_metric_values)
+        else:
+            # min metric
+            best_config_metric_nr = np.argmin(best_config_metric_values)
+
+        best_config_outer_fold = list_of_non_failed_configs[best_config_metric_nr]
+
+        return best_config_outer_fold
