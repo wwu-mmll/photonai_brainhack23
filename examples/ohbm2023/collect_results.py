@@ -25,6 +25,7 @@ class ResultCollector:
                         for metric_name, metric_values in perf.items():
                             perf_dict[metric_name + '_mean'] = [np.mean(metric_values)]
                             perf_dict[metric_name + '_std'] = [np.std(metric_values)]
+                        perf_dict["analysis"] = analysis_path.name
                         new_df = pd.DataFrame(perf_dict, columns=[k for k in perf_dict.keys()])
                         if result_df is None:
                             result_df = new_df

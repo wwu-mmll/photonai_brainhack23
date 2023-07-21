@@ -7,14 +7,16 @@ import os
 
 
 list_of_config_selectors = {
-                            # 'best_std': BestStdConfigSelector,
-                            'percentile': PercentileConfigSelector,
-                            # 'default': DefaultConfigSelector,
-                            # 'random': RandomConfigSelector
+                            'random': RandomConfigSelector,
+                            'percentile50': PercentileConfigSelector,
+                            'percentile75': PercentileConfigSelector,
+                            'percentile90': PercentileConfigSelector,
+                            'best': DefaultConfigSelector,
+                            'best_std': BestStdConfigSelector,
                             }
 
-multiprocessing = True
-calculate = True
+multiprocessing = False
+calculate = False
 
 
 list_of_dataset_runners = {
