@@ -1,5 +1,6 @@
 import pandas as pd
 from run_elements import *
+
 from config_selectors import *
 from collect_results import ResultCollector
 from multiprocessing import Process
@@ -7,19 +8,22 @@ import os
 
 
 list_of_config_selectors = {
-                            'random': RandomConfigSelector,
-                            'percentile50': PercentileConfigSelector,
-                            'percentile75': PercentileConfigSelector,
-                            'percentile90': PercentileConfigSelector,
-                            'best': DefaultConfigSelector,
-                            'best_std': BestStdConfigSelector,
+                            # 'random': RandomConfigSelector,
+                            # 'percentile50': PercentileConfigSelector,
+                            # 'percentile75': PercentileConfigSelector,
+                            # 'percentile90': PercentileConfigSelector,
+                            # 'best': DefaultConfigSelector,
+                            # 'best_std': BestStdConfigSelector,
+                            # 'rank': RankingConfigSelector,
+                            'weighted_rank': WeightedRankingConfigSelector
                             }
 
-multiprocessing = False
-calculate = False
+multiprocessing = True
+calculate = True
 
 
 list_of_dataset_runners = {
+
                            'abalone': AbaloneRunner,
                            'habermans_survival': HabermansSurvivalRunner,
                            'autistic': AutisticRunner,
