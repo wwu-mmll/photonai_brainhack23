@@ -50,7 +50,7 @@ class RandomConfigSelector:
 
 class PercentileConfigSelector(BaseConfigSelector):
 
-    def __init__(self, percentile: int = 50):
+    def __init__(self, percentile: int = 75):
         self.percentile = percentile
 
     def __call__(self, list_of_non_failed_configs, metric, fold_operation, maximize_metric):
