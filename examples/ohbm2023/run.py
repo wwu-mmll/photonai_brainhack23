@@ -1,22 +1,24 @@
 import pandas as pd
 
 from run_elements import *
-from config_selectors import DefaultConfigSelector, RandomConfigSelector
+from config_selectors import DefaultConfigSelector, RandomConfigSelector, RankingConfigSelector, WeightedRankingConfigSelector
 from collect_results import ResultCollector
 from multiprocessing import Process
 import os
 
 
 list_of_config_selectors = {'default': DefaultConfigSelector,
-                            'random': RandomConfigSelector}
+                            'random': RandomConfigSelector,
+                            'rank': RankingConfigSelector, 
+                            'weighted_rank': WeightedRankingConfigSelector}
 
-
-config_selector_name = 'default'
+config_selector_name = 'rank'
 multiprocessing = False
 calculate = False
 
 
 list_of_dataset_runners = {
+
                            'abalone': AbaloneRunner,
                            'habermans_survival': HabermansSurvivalRunner,
                            'autistic': AutisticRunner,
